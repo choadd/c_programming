@@ -28,7 +28,7 @@ int main()
 	{
 		printfFishes();
 		printf("몇번 어항에 물을 넣을까? ");
-		scanf_s("%d", &num);
+		scanf_s(" %d ", &num);
 
 		if (num < 1 || num > 6)
 		{
