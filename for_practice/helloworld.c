@@ -14,110 +14,110 @@ int checkFishAlive();
 
 int main()
 {
-	long startTime = 0;
-	long totalElapsedTime = 0;
-	long prevElapsedTime = 0;
+    long startTime = 0;
+    long totalElapsedTime = 0;
+    long prevElapsedTime = 0;
 
-	int num;
-	initData();
+    int num;
+    initData();
 
-	cursor = arrayFish;
+    cursor = arrayFish;
 
-	startTime = clock();
-	while (1)
-	{
-		printfFishes();
-		printf("¸î¹ø ¾îÇ×¿¡ ¹°À» ³ÖÀ»±î? ");
-		scanf_s(" %d ", &num);
+    startTime = clock();
+    while (1)
+    {
+        printfFishes();
+        printf("ëª‡ë²ˆ ì–´í•­ì— ë¬¼ì„ ë„£ì„ê¹Œ? ");
+        scanf_s(" %d ", &num);
 
-		if (num < 1 || num > 6)
-		{
-			printf("\nÀÔ·Â°ªÀÌ Àß¸ø µÇ¾ú´Ù.\n");
-			continue;
-		}
+        if (num < 1 || num > 6)
+        {
+            printf("\nì…ë ¥ê°’ì´ ì˜ëª» ë˜ì—ˆë‹¤.\n");
+            continue;
+        }
 
-		totalElapsedTime = (clock() - startTime) / CLOCKS_PER_SEC;
-		printf("ÃÑ °æ°ú ½Ã°£ : %d\n", totalElapsedTime);
+        totalElapsedTime = (clock() - startTime) / CLOCKS_PER_SEC;
+        printf("ì´ ê²½ê³¼ ì‹œê°„ : %d\n", totalElapsedTime);
 
-		prevElapsedTime = totalElapsedTime - prevElapsedTime;
-		printf("ÃÖ±Ù °æ°ú ½Ã°£ : %1d sec \n", prevElapsedTime);
+        prevElapsedTime = totalElapsedTime - prevElapsedTime;
+        printf("ìµœê·¼ ê²½ê³¼ ì‹œê°„ : %1d sec \n", prevElapsedTime);
 
-		decreaseWater(prevElapsedTime);
+        decreaseWater(prevElapsedTime);
 
-		if (cursor[num - 1] <= 0)
-		{
-			printf("%d ¹ø ¹°°í±â´Â Á×¾ú½À´Ï´Ù.\n", num);
-		}
-		else if (cursor[num - 1] + 1)
-		{
-			printf("%d ¹ø ¾îÇ×¿¡ ¹°À» ÁØ´Ù.\n", num);
-			cursor[num - 1] += 1;
-		}
+        if (cursor[num - 1] <= 0)
+        {
+            printf("%d ë²ˆ ë¬¼ê³ ê¸°ëŠ” ì£½ì—ˆìŠµë‹ˆë‹¤.\n", num);
+        }
+        else if (cursor[num - 1] + 1)
+        {
+            printf("%d ë²ˆ ì–´í•­ì— ë¬¼ì„ ì¤€ë‹¤.\n", num);
+            cursor[num - 1] += 1;
+        }
 
-		if (totalElapsedTime / 20 > level - 1)
-		{
-			level++;
-			printf("·¹º§ ¾÷ %d ¿¡¼­ %d·Î ·¹º§¾÷\n", level - 1, level);
+        if (totalElapsedTime / 20 > level - 1)
+        {
+            level++;
+            printf("ë ˆë²¨ ì—… %d ì—ì„œ %dë¡œ ë ˆë²¨ì—…\n", level - 1, level);
 
-			if (level == 5) 
-			{
-				printf("ÃàÇÏÇÕ´Ï´Ù ÃÖ°í·¹º§ ÀÔ´Ï´Ù.\n");
-				exit(0);
-			}
-		}
-		if (checkFishAlive() == 0)
-		{
-			printf("¹°°í±â 0¸¶¸® °ÔÀÓ ³¡");
-			exit(0);
-		}
-		else
-		{
-			printf("¹°°í±â ¾ÆÁ÷ »ì¾ÆÀÖÀ½.");
-		}
+            if (level == 5)
+            {
+                printf("ì¶•í•˜í•©ë‹ˆë‹¤ ìµœê³ ë ˆë²¨ ì…ë‹ˆë‹¤.\n");
+                exit(0);
+            }
+        }
+        if (checkFishAlive() == 0)
+        {
+            printf("ë¬¼ê³ ê¸° 0ë§ˆë¦¬ ê²Œì„ ë");
+            exit(0);
+        }
+        else
+        {
+            printf("ë¬¼ê³ ê¸° ì•„ì§ ì‚´ì•„ìˆìŒ.");
+        }
 
-	}
+    }
 
-	prevElapsedTime = totalElapsedTime;
+    prevElapsedTime = totalElapsedTime;
 
-	
-	return 0;
+
+    return 0;
 }
 
 void initData()
 {
-	level = 1;
-	for (int i = 0; i < 6; i++)
-	{
-		arrayFish[i] = 100;
-	}
+    level = 1;
+    for (int i = 0; i < 6; i++)
+    {
+        arrayFish[i] = 100;
+    }
 }
 
 void printfFishes()
 {
-	printf("%3d¹ø %3d¹ø %3d¹ø %3d¹ø %3d¹ø %3d¹ø\n", 1, 2, 3, 4, 5, 6);
-	for (int i = 0; i < 6; i++)
-	{
-		printf(" %4d ", arrayFish[i]);
-	}
-	printf("\n\n");
+    printf("%3dë²ˆ %3dë²ˆ %3dë²ˆ %3dë²ˆ %3dë²ˆ %3dë²ˆ\n", 1, 2, 3, 4, 5, 6);
+    for (int i = 0; i < 6; i++)
+    {
+        printf(" %4d ", arrayFish[i]);
+    }
+    printf("\n\n");
 }
 
 void decreaseWater(long elapsedTime)
 {
-	for (int i = 0; i < 6; i++)
-	{
-		arrayFish[i] -= (level * 3 * (int)elapsedTime);
-		if (arrayFish < 0)
-		{
-			arrayFish[i] = 0;
-		}
-	}
+    for (int i = 0; i < 6; i++)
+    {
+        arrayFish[i] -= (level * 3 * (int)elapsedTime);
+        if (arrayFish < 0)
+        {
+            arrayFish[i] = 0;
+        }
+    }
 }
 int checkFishAlive()
 {
-	for (int i = 0; i < 6; i++)
-	{
-		if (arrayFish[i] > 0)
-			return 1;
-	}
+    for (int i = 0; i < 6; i++)
+    {
+        if (arrayFish[i] > 0)
+            return 1;
+    }
 }
